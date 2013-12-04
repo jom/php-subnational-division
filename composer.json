@@ -1,0 +1,14 @@
+{
+	"name": "jom/php-subnational-division",
+	"description": "Get arrays of subnational divisions (e.g. states, regions, provinces, ...)",
+	"homepage": "https://github.com/jom/php-subnational-division",
+	"license": "MIT",
+	"minimum-stability": "dev",
+	"require": {
+		"php": ">=5.4.0",
+	},
+	"autoload": {
+		"classmap": ["src/jom/SubnationalDivisions.php"],
+		"psr-0": { "jom\\": "/src" }
+	}
+}
