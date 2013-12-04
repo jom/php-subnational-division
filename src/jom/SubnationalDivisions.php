@@ -7,7 +7,7 @@
  */
 namespace jom;
 
-defined('SUBNATIONAL_DIVISION_DATA_PATH') || define('SUBNATIONAL_DIVISION_DATA_PATH', dirname(dirname(dirname(__DIR__))) . DIRECTORY_SEPARATOR . 'data');
+defined('SUBNATIONAL_DIVISION_DATA_PATH') || define('SUBNATIONAL_DIVISION_DATA_PATH', dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'data');
 
 class SubnationalDivisions
 {
@@ -20,7 +20,7 @@ class SubnationalDivisions
 
 	public static function getCountries()
 	{
-		$config = self::getConfig();
+		$config = self::loadConfig();
 		if ($config && isset($config['countries'])) {
 			return $config['countries'];
 		}
@@ -47,7 +47,7 @@ class SubnationalDivisions
     	if (is_array($countryTemplate)) {
     		$package = [];
     		foreach ($countryTemplate as $partLabel => $part) {
-    			$partPieces = self::prepare(self::loadData($countryConfig, $countryTemplate), $shortName);
+    			$partPieces = self::prepare(self::loadData($countryConfig, $part), $shortName);
     			if ($partPieces) {
     				if ($flat) {
     					$package = array_merge($package, $partPieces);
@@ -69,7 +69,10 @@ class SubnationalDivisions
     public static function getAll($shortName = false, $flat = false)
     {
     	$package = [];
-    	foreach (self::getCountries() as $id => $list) {
+    	$countries = self::getCountries();
+    	if (!$countries) { return $package; }
+
+    	foreach ($countries as $id => $list) {
     		$package[$id] = self::get($id, $shortName, $flat);
     	}
     	return $package;
@@ -116,6 +119,7 @@ class SubnationalDivisions
 		if (!isset(self::$_config)) {
 			$configPath = self::getDataPath() . DIRECTORY_SEPARATOR . 'config.php';
 			if (!file_exists($configPath)) {
+				var_dump($configPath);exit;
 				return false;
 			}
 			self::$_config = include($configPath);
