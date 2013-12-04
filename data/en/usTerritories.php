@@ -1,12 +1,12 @@
 <?php
 return [
 	'AS' => 'American Samoa',
+	'FM' => 'Federated States of Micronesia',
 	'GU' => 'Guam',
 	'MP' => 'Northern Marianas Islands',
-	'PR' => 'Puerto Rico',
-	'VI' => 'Virgin Islands',
-	'FM' => 'Federated States of Micronesia',
 	'MH' => 'Marshall Islands',
-	'PW' => 'Palau'
+	'PW' => 'Palau',
+	'PR' => 'Puerto Rico',
+	'VI' => 'Virgin Islands'
 ];
 ?>
