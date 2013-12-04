@@ -4,6 +4,7 @@ return [
 		'US' => [
 			'template' => [
 				'States' => 'usStates',
+				'Territories' => 'usTerritories',
 				'Military' => 'usMilitaryStates'
 			]
 		],
